@@ -18,7 +18,7 @@ const HomePage = () => {
             <section className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 md:col-span-1">
                 <h3 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
-                <Filter size={18} /> Danh mục hot
+                <Filter size={18} /> Danh mục
                 </h3>
                 <ul className="space-y-2">
                 {CATEGORIES.map(cat => {

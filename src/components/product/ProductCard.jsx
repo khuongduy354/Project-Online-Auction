@@ -1,11 +1,13 @@
 import { User, ShoppingCart, Gavel,Heart, Flame } from 'lucide-react';
-import { formatCurrency } from '../../utils/formatters';
+import { formatCurrency, isProductNew } from '../../utils/formatters';
+import { useWatchList } from '../../context/WatchListContext';
 import CountDown from './CountDown';
 import { Link } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {
-  const isNew = new Date() - new Date(product.createdAt) < 30 * 60 * 1000; // 30 phút
-
+  const isNew = isProductNew(product.createdAt); 
+  const { watchList, toggleWatchList } = useWatchList();
+  const isFavorite = watchList.includes(product.id);
   return (
     <Link to={`/products/${product.id}`}>
     <div className={`group bg-white rounded-xl border transition-all hover:shadow-lg hover:-translate-y-1 ${
@@ -13,16 +15,24 @@ const ProductCard = ({ product }) => {
     }`}>
       <div className="relative h-48 overflow-hidden rounded-t-xl">
         <img src={product.image} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-        
-        {/* Badges */}
+        <button 
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleWatchList(product.id);
+          }}
+          className="absolute top-2 right-2 z-20 p-2 rounded-full bg-white/80 hover:bg-white shadow-sm transition-all group-hover:scale-110"
+          title={isFavorite ? "Bỏ theo dõi" : "Theo dõi"}
+        >
+          <Heart 
+            size={18} 
+            className={`transition-colors ${isFavorite ? "fill-red-500 text-red-500" : "text-gray-400 hover:text-red-400"}`} 
+          />
+        </button>
         <div className="absolute top-2 left-2 flex flex-col gap-1">
           {isNew && <span className="bg-blue-600 text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm">MỚI</span>}
           {product.isHot && <span className="bg-orange-500 text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm flex items-center gap-1"><Flame size={10} /> HOT</span>}
         </div>
-        
-        <button className="absolute top-2 right-2 p-1.5 bg-white/80 rounded-full text-gray-400 hover:text-red-500 hover:bg-white transition-colors">
-          <Heart size={16} />
-        </button>
       </div>
 
       <div className="p-4">

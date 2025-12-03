@@ -1,19 +1,21 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, Clock, ShieldCheck, Phone } from 'lucide-react';
-import { ImageIcon, Calendar, UserCheck, Star, TrendingUp, MessageCircle } from 'lucide-react';
+import { ChevronRight, Clock, ShieldCheck, Phone, ImageIcon, Calendar, UserCheck, Star, TrendingUp, MessageCircle, Heart } from 'lucide-react';
 import { useParams } from 'react-router-dom';
 import { MOCK_PRODUCTS, CATEGORIES } from '../../data/mockData';
 import { formatCurrency, formatPostDate, formatEndTime } from '../../utils/formatters';
+import { useWatchList } from '../../context/WatchListContext';
 import SectionTitle from './SectionTitle';
 import ProductCard from './ProductCard';
+
 const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeImage, setActiveImage] = useState('');
   const [relatedProducts, setRelatedProducts] = useState([]);
-
+  const { watchList, toggleWatchList } = useWatchList();
+  const isFavorite = watchList.includes(id);
   useEffect(() => {
     setLoading(true);
     setProduct(null);
@@ -57,6 +59,20 @@ const ProductDetails = () => {
         <div className="lg:col-span-5 space-y-4">
           <div className="rounded-xl overflow-hidden bg-gray-100 border border-gray-200 aspect-square group relative">
              <img src={activeImage} alt={product.name} className="w-full h-full object-cover" />
+             <button 
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleWatchList(id);
+              }}
+              className="absolute top-2 right-2 z-20 p-2 rounded-full bg-white/80 hover:bg-white shadow-sm transition-all group-hover:scale-110"
+              title={isFavorite ? "Bỏ theo dõi" : "Theo dõi"}
+            >
+              <Heart 
+                size={25} 
+                className={`transition-colors ${isFavorite ? "fill-red-500 text-red-500" : "text-gray-400 hover:text-red-400"}`} 
+              />
+            </button>
              <div className="absolute top-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded backdrop-blur-sm flex items-center gap-1">
                <ImageIcon size={12} /> {product.images?.length || 1} ảnh
              </div>
@@ -216,7 +232,7 @@ const ProductDetails = () => {
       <div className="mt-16">
         <SectionTitle icon={TrendingUp} title="Sản phẩm cùng chuyên mục" subtitle="Có thể bạn cũng thích" />
         {relatedProducts.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
             {relatedProducts.map(p => <ProductCard key={p.id} product={p} />)}
           </div>
         ) : (

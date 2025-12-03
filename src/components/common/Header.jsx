@@ -1,9 +1,12 @@
 import React from 'react'
-import { User, Gavel } from 'lucide-react';
+import { User, Gavel, Heart } from 'lucide-react';
 import { CATEGORIES } from '../../data/mockData';
 import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
+import { useWatchList } from '../../context/WatchListContext';
+
 const Header = () => {
+    const { watchList } = useWatchList();
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-3">
@@ -22,6 +25,11 @@ const Header = () => {
             <SearchBar />
             {/* User Actions */}
             <div className="flex items-center gap-4">
+            {watchList.length > 0 && (
+                <div className="flex items-center gap-1 text-sm font-medium text-red-600 bg-red-50 px-3 py-1.5 rounded-full">
+                    <Heart size={16} className="fill-red-600" /> {watchList.length}
+                </div>
+            )}
             <Link to="/login" className="flex items-center gap-2 text-gray-600 hover:text-blue-600 font-medium text-sm">
                 <User size={20} />
                 <span className="hidden sm:inline">Đăng nhập</span>
