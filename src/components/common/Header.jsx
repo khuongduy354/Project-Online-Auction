@@ -32,7 +32,7 @@ const Header = () => {
             )}
             <Link to="/login" className="flex items-center gap-2 text-gray-600 hover:text-blue-600 font-medium text-sm">
                 <User size={20} />
-                <span className="hidden sm:inline">Đăng nhập</span>
+                <span className="sm:inline">Đăng nhập</span>
             </Link>
             <Link
                 to="/register"
