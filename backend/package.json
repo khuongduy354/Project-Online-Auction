@@ -5,7 +5,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx src/index.ts", 
+    "dev": "tsx watch src/index.ts",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,8 +22,9 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "shared-auction": "file:../shared",
     "supabase": "^2.65.6",
-    "tsx": "^4.21.0",
-    "shared-auction": "file:../shared"
+    "tsx": "^4.21.0"
   }
 }
