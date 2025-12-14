@@ -1,7 +1,7 @@
 import { MOCK_PRODUCTS } from '../data/mockData.js'
 
 export const ProductService = {
-    getAll: (sort: string | null = null, order: string | null = null, limit: number | null = null) => {
+    getAll: (sort?: string, order?: string, limit?: number) => {
 
         // Mock data, create SQL queries and pass to models later
         if (sort == 'ends_at')
@@ -13,7 +13,7 @@ export const ProductService = {
         return MOCK_PRODUCTS;
     },
 
-    getById: (id: string) => {
+    getById: (id?: string) => {
         return MOCK_PRODUCTS.filter(p => p.id == id)
     }
 }

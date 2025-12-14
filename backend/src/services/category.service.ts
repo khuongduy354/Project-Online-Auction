@@ -5,7 +5,7 @@ export const CategoryService = {
         return CATEGORIES;
     },
 
-    getProductsById: (id: string) => {
+    getProductsById: (id?: string) => {
         return MOCK_PRODUCTS.filter(p => p.categoryId == id)
     }
 }

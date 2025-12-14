@@ -1,34 +1,34 @@
 // --- DANH MỤC (5 Danh mục lớn) ---
 export const CATEGORIES = [
   {
-    id: 1,
+    id: "1",
     name: 'Điện tử',
     subs: ['Điện thoại', 'Laptop', 'Máy ảnh', 'Phụ kiện công nghệ']
   },
   {
-    id: 2,
+    id: "2",
     name: 'Đồng hồ',
     subs: ['Đồng hồ cơ', 'Smartwatch', 'Đồng hồ cổ', 'Phụ kiện đồng hồ']
   },
   {
-    id: 3,
+    id: "3",
     name: 'Thời trang',
     subs: ['Giày Sneaker', 'Túi xách hàng hiệu', 'Trang sức', 'Kính mắt']
   },
   {
-    id: 4,
+    id: "4",
     name: 'Sưu tầm',
     subs: ['Tiền cổ', 'Tem', 'Tranh nghệ thuật', 'Đồ gốm sứ']
   },
   {
-    id: 5,
+    id: "5",
     name: 'Xe cộ',
     subs: ['Xe máy cổ', 'Xe đạp đua', 'Phụ tùng xe']
   }
 ];
 
 // Hàm helper để tạo lịch sử đấu giá giả
-const generateBidHistory = (basePrice, count) => {
+const generateBidHistory = (basePrice: number, count: number) => {
   const history = [];
   let currentPrice = basePrice;
   const bidders = ['****Khoa', '****Tuan', '****Minh', '****Linh', '****Huong', '****Nam', '****Phuc', '****Thao'];
@@ -49,9 +49,9 @@ const generateBidHistory = (basePrice, count) => {
 export const MOCK_PRODUCTS = [
   // --- 1. ĐIỆN TỬ (9 SP) ---
   {
-    id: 101,
+    id: "101",
     name: 'iPhone 15 Pro Max Titanium - 256GB VN/A',
-    categoryId: 1,
+    categoryId: "1",
     price: 28500000,
     buyNowPrice: 32000000,
     bidCount: 15,
@@ -65,9 +65,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(24000000, 15)
   },
   {
-    id: 102,
+    id: "102",
     name: 'MacBook Pro M3 Max 16 inch - 36GB/1TB',
-    categoryId: 1,
+    categoryId: "1",
     price: 85900000,
     buyNowPrice: 95000000,
     bidCount: 8,
@@ -81,9 +81,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(80000000, 8)
   },
   {
-    id: 103,
+    id: "103",
     name: 'Máy ảnh Sony Alpha A7 IV Body',
-    categoryId: 1,
+    categoryId: "1",
     price: 45000000,
     buyNowPrice: 52000000,
     bidCount: 22,
@@ -97,9 +97,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(40000000, 22)
   },
   {
-    id: 104,
+    id: "104",
     name: 'iPad Pro M2 12.9 inch Wifi 5G',
-    categoryId: 1,
+    categoryId: "1",
     price: 22500000,
     buyNowPrice: null,
     bidCount: 6,
@@ -113,9 +113,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(21000000, 6)
   },
   {
-    id: 106,
+    id: "106",
     name: 'Tai nghe Sony WH-1000XM5 Chống ồn',
-    categoryId: 1,
+    categoryId: "1",
     price: 5500000,
     buyNowPrice: 6500000,
     bidCount: 18,
@@ -128,9 +128,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(4000000, 18)
   },
   {
-    id: 107,
+    id: "107",
     name: 'Loa Marshall Stanmore III Bluetooth',
-    categoryId: 1,
+    categoryId: "1",
     price: 7200000,
     buyNowPrice: 8500000,
     bidCount: 12,
@@ -143,9 +143,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(6000000, 12)
   },
   {
-    id: 108,
+    id: "108",
     name: 'Nintendo Switch OLED Model - White',
-    categoryId: 1,
+    categoryId: "1",
     price: 6500000,
     buyNowPrice: 7500000,
     bidCount: 9,
@@ -158,9 +158,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(5000000, 9)
   },
   {
-    id: 109,
+    id: "109",
     name: 'Bàn phím cơ Keychron Q1 Pro',
-    categoryId: 1,
+    categoryId: "1",
     price: 3200000,
     buyNowPrice: 4000000,
     bidCount: 25,
@@ -174,9 +174,9 @@ export const MOCK_PRODUCTS = [
   },
   // --- 2. ĐỒNG HỒ (8 SP) ---
   {
-    id: 201,
+    id: "201",
     name: 'Rolex Submariner Date "Hulk" Green',
-    categoryId: 2,
+    categoryId: "2",
     price: 450000000,
     buyNowPrice: 500000000,
     bidCount: 45,
@@ -189,9 +189,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(380000000, 45)
   },
   {
-    id: 202,
+    id: "202",
     name: 'Apple Watch Ultra 2 - Alpine Loop',
-    categoryId: 2,
+    categoryId: "2",
     price: 18500000,
     buyNowPrice: 21000000,
     bidCount: 12,
@@ -204,9 +204,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(16000000, 12)
   },
   {
-    id: 203,
+    id: "203",
     name: 'Omega Seamaster Diver 300M',
-    categoryId: 2,
+    categoryId: "2",
     price: 85000000,
     buyNowPrice: 95000000,
     bidCount: 5,
@@ -219,9 +219,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(82000000, 5)
   },
   {
-    id: 204,
+    id: "204",
     name: 'Casio G-Shock MTG-B2000',
-    categoryId: 2,
+    categoryId: "2",
     price: 15000000,
     buyNowPrice: 18000000,
     bidCount: 7,
@@ -234,9 +234,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(13000000, 7)
   },
   {
-    id: 205,
+    id: "205",
     name: 'Tissot PRX Powermatic 80 Ice Blue',
-    categoryId: 2,
+    categoryId: "2",
     price: 14500000,
     buyNowPrice: 16000000,
     bidCount: 30,
@@ -249,9 +249,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(10000000, 30)
   },
   {
-    id: 206,
+    id: "206",
     name: 'Hublot Big Bang Sang Bleu',
-    categoryId: 2,
+    categoryId: "2",
     price: 350000000,
     buyNowPrice: 380000000,
     bidCount: 4,
@@ -264,9 +264,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(320000000, 4)
   },
   {
-    id: 207,
+    id: "207",
     name: 'Seiko 5 Sports GMT "Blueberry"',
-    categoryId: 2,
+    categoryId: "2",
     price: 8500000,
     buyNowPrice: 10000000,
     bidCount: 15,
@@ -279,9 +279,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(5000000, 15)
   },
   {
-    id: 208,
+    id: "208",
     name: 'Garmin Fenix 7X Sapphire Solar',
-    categoryId: 2,
+    categoryId: "2",
     price: 19500000,
     buyNowPrice: 23000000,
     bidCount: 8,
@@ -296,9 +296,9 @@ export const MOCK_PRODUCTS = [
 
   // --- 3. THỜI TRANG (8 SP) ---
   {
-    id: 301,
+    id: "301",
     name: 'Giày Nike Air Jordan 1 High Chicago',
-    categoryId: 3,
+    categoryId: "3",
     price: 8500000,
     buyNowPrice: 10000000,
     bidCount: 25,
@@ -311,9 +311,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(5000000, 25)
   },
   {
-    id: 302,
+    id: "302",
     name: 'Túi xách Louis Vuitton Neverfull MM',
-    categoryId: 3,
+    categoryId: "3",
     price: 35000000,
     buyNowPrice: 40000000,
     bidCount: 18,
@@ -326,9 +326,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(28000000, 18)
   },
   {
-    id: 303,
+    id: "303",
     name: 'Kính mát Ray-Ban Aviator Classic',
-    categoryId: 3,
+    categoryId: "3",
     price: 2500000,
     buyNowPrice: 3200000,
     bidCount: 5,
@@ -341,9 +341,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(1500000, 5)
   },
   {
-    id: 304,
+    id: "304",
     name: 'Thắt lưng Gucci Double G Buckle',
-    categoryId: 3,
+    categoryId: "3",
     price: 9000000,
     buyNowPrice: 11000000,
     bidCount: 9,
@@ -356,9 +356,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(7000000, 9)
   },
   {
-    id: 305,
+    id: "305",
     name: 'Túi xách Dior Saddle Bag - Black',
-    categoryId: 3,
+    categoryId: "3",
     price: 65000000,
     buyNowPrice: 72000000,
     bidCount: 20,
@@ -371,9 +371,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(50000000, 20)
   },
   {
-    id: 306,
+    id: "306",
     name: 'Giày Adidas Yeezy Boost 350 V2',
-    categoryId: 3,
+    categoryId: "3",
     price: 6500000,
     buyNowPrice: 8000000,
     bidCount: 14,
@@ -386,9 +386,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(4000000, 14)
   },
   {
-    id: 307,
+    id: "307",
     name: 'Áo khoác The North Face Nuptse 1996',
-    categoryId: 3,
+    categoryId: "3",
     price: 4500000,
     buyNowPrice: 5500000,
     bidCount: 11,
@@ -401,9 +401,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(3000000, 11)
   },
   {
-    id: 308,
+    id: "308",
     name: 'Mắt kính Gentle Monster Dreamer',
-    categoryId: 3,
+    categoryId: "3",
     price: 3800000,
     buyNowPrice: 5000000,
     bidCount: 6,
@@ -418,9 +418,9 @@ export const MOCK_PRODUCTS = [
 
   // --- 4. SƯU TẦM (8 SP) ---
   {
-    id: 401,
+    id: "401",
     name: 'Bộ tiền giấy Đông Dương năm 1945',
-    categoryId: 4,
+    categoryId: "4",
     price: 5000000,
     buyNowPrice: 8000000,
     bidCount: 14,
@@ -433,9 +433,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(3000000, 14)
   },
   {
-    id: 402,
+    id: "402",
     name: 'Bình gốm sứ Bát Tràng cổ thế kỷ 19',
-    categoryId: 4,
+    categoryId: "4",
     price: 12000000,
     buyNowPrice: null,
     bidCount: 20,
@@ -448,9 +448,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(8000000, 20)
   },
   {
-    id: 403,
+    id: "403",
     name: 'Bộ tem Việt Nam Dân Chủ Cộng Hòa 1956',
-    categoryId: 4,
+    categoryId: "4",
     price: 3000000,
     buyNowPrice: 4500000,
     bidCount: 6,
@@ -463,9 +463,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(2000000, 6)
   },
   {
-    id: 404,
+    id: "404",
     name: 'Tranh sơn dầu phố cổ Hà Nội',
-    categoryId: 4,
+    categoryId: "4",
     price: 4500000,
     buyNowPrice: 6000000,
     bidCount: 8,
@@ -478,9 +478,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(3500000, 8)
   },
   {
-    id: 405,
+    id: "405",
     name: 'Lego Star Wars Millennium Falcon UCS',
-    categoryId: 4,
+    categoryId: "4",
     price: 18000000,
     buyNowPrice: 22000000,
     bidCount: 3,
@@ -493,9 +493,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(15000000, 3)
   },
   {
-    id: 406,
+    id: "406",
     name: 'Thẻ bài Pokémon Charizard 1st Edition',
-    categoryId: 4,
+    categoryId: "4",
     price: 55000000,
     buyNowPrice: null,
     bidCount: 40,
@@ -508,9 +508,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(40000000, 40)
   },
   {
-    id: 407,
+    id: "407",
     name: 'Mô hình One Piece Luffy',
-    categoryId: 4,
+    categoryId: "4",
     price: 2500000,
     buyNowPrice: 3000000,
     bidCount: 12,
@@ -523,9 +523,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(1500000, 12)
   },
   {
-    id: 408,
+    id: "408",
     name: 'Đồng xu Bạc Đông Dương 1 Piastre',
-    categoryId: 4,
+    categoryId: "4",
     price: 1200000,
     buyNowPrice: 1500000,
     bidCount: 9,
@@ -540,9 +540,9 @@ export const MOCK_PRODUCTS = [
 
   // --- 5. XE CỘ (7 SP) ---
   {
-    id: 501,
+    id: "501",
     name: 'Xe Vespa cổ Standard 1968',
-    categoryId: 5,
+    categoryId: "5",
     price: 55000000,
     buyNowPrice: 65000000,
     bidCount: 30,
@@ -555,9 +555,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(40000000, 30)
   },
   {
-    id: 502,
+    id: "502",
     name: 'Xe đạp đua Giant TCR Advanced Pro',
-    categoryId: 5,
+    categoryId: "5",
     price: 42000000,
     buyNowPrice: 48000000,
     bidCount: 11,
@@ -570,9 +570,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(35000000, 11)
   },
   {
-    id: 503,
+    id: "503",
     name: 'Mô hình xe Ford Mustang 1967 GT500',
-    categoryId: 5,
+    categoryId: "5",
     price: 3500000,
     buyNowPrice: 4200000,
     bidCount: 5,
@@ -585,9 +585,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(2800000, 5)
   },
   {
-    id: 504,
+    id: "504",
     name: 'Honda SH 150i ABS 2022',
-    categoryId: 5,
+    categoryId: "5",
     price: 88000000,
     buyNowPrice: 95000000,
     bidCount: 22,
@@ -600,9 +600,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(75000000, 22)
   },
   {
-    id: 505,
+    id: "505",
     name: 'Mũ bảo hiểm Royal Carbon Fullface',
-    categoryId: 5,
+    categoryId: "5",
     price: 2500000,
     buyNowPrice: 3200000,
     bidCount: 8,
@@ -615,9 +615,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(1800000, 8)
   },
   {
-    id: 506,
+    id: "506",
     name: 'Camera hành trình GoPro Hero 12',
-    categoryId: 5,
+    categoryId: "5",
     price: 8500000,
     buyNowPrice: 9500000,
     bidCount: 16,
@@ -630,9 +630,9 @@ export const MOCK_PRODUCTS = [
     bidHistory: generateBidHistory(7000000, 16)
   },
   {
-    id: 507,
+    id: "507",
     name: 'Mô hình Ducati Panigale V4 S (Tamiya)',
-    categoryId: 5,
+    categoryId: "5",
     price: 1800000,
     buyNowPrice: 2200000,
     bidCount: 4,

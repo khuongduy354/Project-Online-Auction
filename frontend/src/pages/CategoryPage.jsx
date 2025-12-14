@@ -1,46 +1,77 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Filter, ChevronRight, Home, ChevronLeft } from 'lucide-react';
-import { MOCK_PRODUCTS, CATEGORIES } from '../data/mockData';
+// 1. Import Service thay vì mockData
+import { CategoryService } from '../services/backendService'; 
 import ProductCard from '../components/product/ProductCard';
 import Header from '../components/common/Header';
 
 const CategoryPage = () => {
   const { id } = useParams();
+  
+  // 2. Tạo State để lưu dữ liệu từ API
   const [loading, setLoading] = useState(true);
+  const [category, setCategory] = useState(null);
+  const [allProducts, setAllProducts] = useState([]);
   
-  // --- LOGIC PHÂN TRANG ---
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 4; // Yêu cầu: 4 sản phẩm mỗi trang
+  const productsPerPage = 4; 
 
-  const categoryId = parseInt(id);
-  const currentCategory = CATEGORIES.find(c => c.id === categoryId);
-  
-  // 1. Lọc tất cả sản phẩm thuộc danh mục
-  const allProducts = MOCK_PRODUCTS.filter(p => p.categoryId === categoryId);
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const categoriesData = await CategoryService.getAll();
+        const foundCategory = categoriesData.find(c => c.id == id);
+        setCategory(foundCategory);
 
-  // 2. Tính toán sản phẩm cho trang hiện tại
+        if (foundCategory) {
+            const productsData = await CategoryService.getProductsById(id);
+            setAllProducts(productsData);
+        }
+      } catch (error) {
+        console.error("Lỗi tải dữ liệu danh mục:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+    setCurrentPage(1); // Reset về trang 1 khi đổi ID
+    window.scrollTo(0, 0);
+  }, [id]);
+
+  // 3. Tính toán sản phẩm cho trang hiện tại (Dựa trên allProducts đã fetch)
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = allProducts.slice(indexOfFirstProduct, indexOfLastProduct);
-  
-  // 3. Tính tổng số trang
   const totalPages = Math.ceil(allProducts.length / productsPerPage);
 
   // Hàm chuyển trang
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // Cuộn mượt lên đầu
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  useEffect(() => {
-    setLoading(true);
-    setCurrentPage(1); // Reset về trang 1 khi đổi danh mục
-    window.scrollTo(0, 0);
-    setTimeout(() => setLoading(false), 500);
-  }, [categoryId]);
+  // 4. Xử lý trạng thái Loading và Not Found
+  if (loading) {
+    return (
+        <>
+            <Header/>
+            <div className="container mx-auto px-4 py-12">
+                 {/* Skeleton Loading Effect */}
+                <div className="h-8 bg-gray-200 w-1/4 mb-6 rounded animate-pulse"></div>
+                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    {[...Array(4)].map((_, i) => (
+                        <div key={i} className="bg-gray-200 h-80 rounded-xl animate-pulse"></div>
+                    ))}
+                </div>
+            </div>
+        </>
+    );
+  }
 
-  if (!currentCategory) {
+  if (!category) {
     return (
       <div className="container mx-auto px-4 py-12 text-center">
         <h2 className="text-2xl font-bold text-gray-800">Không tìm thấy danh mục!</h2>
@@ -61,12 +92,12 @@ const CategoryPage = () => {
                 <Home size={16} className="mr-1" /> Trang chủ
               </Link>
               <ChevronRight size={16} className="mx-2" />
-              <span className="text-gray-900 font-medium">{currentCategory.name}</span>
+              <span className="text-gray-900 font-medium">{category.name}</span>
             </div>
             
             <div className="flex justify-between items-end">
               <div>
-                <h1 className="text-3xl font-bold text-gray-900">{currentCategory.name}</h1>
+                <h1 className="text-3xl font-bold text-gray-900">{category.name}</h1>
                 <p className="text-gray-500 mt-1">
                   Hiển thị {currentProducts.length} trên tổng số {allProducts.length} sản phẩm
                 </p>
@@ -89,13 +120,7 @@ const CategoryPage = () => {
 
         {/* Main Content */}
         <div className="container mx-auto px-4 py-8">
-          {loading ? (
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 animate-pulse">
-              {[...Array(productsPerPage)].map((_, i) => (
-                <div key={i} className="bg-gray-200 h-80 rounded-xl"></div>
-              ))}
-            </div>
-          ) : allProducts.length > 0 ? (
+          {allProducts.length > 0 ? (
             <>
               {/* Grid Sản phẩm */}
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
@@ -145,7 +170,7 @@ const CategoryPage = () => {
                   <Filter size={32} />
               </div>
               <h3 className="text-lg font-medium text-gray-900">Chưa có sản phẩm nào</h3>
-              <p className="text-gray-500 mt-1">Hãy thử quay lại sau hoặc chọn danh mục khác.</p>
+              <p className="text-gray-500 mt-1">Danh mục này hiện đang trống.</p>
             </div>
           )}
         </div>
